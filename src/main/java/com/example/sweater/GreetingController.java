@@ -17,7 +17,8 @@ public class GreetingController {
 
     @GetMapping("/greeting")
     public String greeting(
-            @RequestParam(name="name", required=false, defaultValue="World") String name,
+            @RequestParam(name="name", required=false, defaultValue="World")
+            String name,
             Map<String, Object> model
     ) {
         model.put("name", name);
@@ -46,7 +47,7 @@ public class GreetingController {
    @PostMapping("filter")
    public String filter(@RequestParam String filter, Map<String, Object> model) {
        Iterable<Message> messages;
-       if (filter != null && filter.isEmpty() ) {
+       if (filter != null && !filter.isEmpty() ) {
            messages = messageRepo.findByTag(filter);
        } else {
            messages = messageRepo.findAll();
